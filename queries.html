@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>User Table</h2>
+
+<table id="userTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+    // Fetch data from the API and display it
+    async function fetchUsers() {
+        const response = await fetch('http://localhost:3000/api/users');
+        const users = await response.json();
+        const tableBody = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+
+        users.forEach(user => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = user.r_id;
+            row.insertCell(1).textContent = user.r_floor;
+            row.insertCell(2).textContent = user.r_price;
+        });
+    }
+
+    fetchUsers();
+</script>
+
+</body>
+</html>
